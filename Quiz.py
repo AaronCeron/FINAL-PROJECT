@@ -58,23 +58,30 @@ random.shuffle(questions)
 
 score = 0
 
-print("Welcome to the Quiz Game")
-print("------------------------")
+while True:
+    print("Welcome to the Quiz Game")
+    print("------------------------")
 
-for question in questions:
-    print(question["question"])
-    for choice in question["choices"]:
-        print(choice)
+    for question in questions:
+        print(question["question"])
+        for choice in question["choices"]:
+            print(choice)
     
-    user_answer = input("Enter the letter corresponding to your answer (A, B, C, or D): ").upper()
+        user_answer = input("Enter the letter corresponding to your answer (A, B, C, or D): ").upper()
     
-    if user_answer == question["correct_answer"]:
-        print("Correct!\n")
-        score += 1
+        if user_answer == question["correct_answer"]:
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong answer. The correct answer is {question['correct_answer']}.\n")
+
+    score = int(score / len(questions) * 100)
+    print("Congratulations on completing the Quiz, below you will find your score: ")
+    print("---------------------------------------")
+    print(f"Your score is: {score}%")
+    print("Do you want to play again?")
+    user_input = input("Type 'yes' or 'no': ")
+    if user_input == 'yes':
+        continue
     else:
-        print(f"Wrong answer. The correct answer is {question['correct_answer']}.\n")
-
-score = int(score / len(questions) * 100)
-print("Congratulations on completing the Quiz, below you will find your score: ")
-print("---------------------------------------")
-print(f"Your score is: {score}%")
+        break
